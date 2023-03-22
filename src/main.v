@@ -1,9 +1,9 @@
 module main
 
 struct Thread {
-	thread_number int    [json: no]
-	title         string [json: sub]
-	name          string
+	no    int
+	title string [json: sub]
+	name  string
 }
 
 struct Page {
@@ -13,5 +13,7 @@ struct Page {
 
 fn main() {
 	catalog := read_json[[]Page]('./fixtures/g_catalog.json') or { panic(err) }
-	println(catalog)
+	generals := build_generals('g', catalog)
+
+	println(generals)
 }
