@@ -11,9 +11,10 @@ struct Page {
 	threads []Thread
 }
 
+const targets = ['g']
+
 fn main() {
 	catalog := read_json[[]Page]('./fixtures/g_catalog.json') or { panic(err) }
-	generals := build_generals('g', catalog)
-
-	println(generals)
+	genz := build_generals('g', catalog)
+	println(genz)
 }

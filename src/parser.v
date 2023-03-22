@@ -8,7 +8,7 @@ fn parse_general(title string) (bool, string) {
 	mut re := regex.regex_opt(re_general) or { return false, '' }
 	start, end := re.find(title)
 	if start != -1 && end != -1 {
-		return true, title[start..end]
+		return true, title[start + 1..end - 1].to_lower()
 	}
 	return false, ''
 }
