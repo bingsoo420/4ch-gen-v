@@ -11,10 +11,10 @@ fn read_json[T](path string) !T {
 
 	mut payload := []u8{}
 	mut buf := []u8{len: 100}
-	for file.read(mut buf)! == buf.len {
+	for !file.eof() {
+		file.read(mut buf)!
 		payload << buf
 	}
-	payload << buf
 
 	return json.decode(T, payload.bytestr())!
 }
